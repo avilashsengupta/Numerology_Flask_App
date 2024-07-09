@@ -5,4 +5,5 @@
   <li>Destiny Path Number</li>
   <li>Kua Number</li>
   <li>Maturity Number</li>
+  <li>Lo-Shu Grid</li>
 </ul>
