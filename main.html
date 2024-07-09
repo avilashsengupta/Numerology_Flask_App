@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</head>
+<body class="bg-slate-700">
+    <div class="flex items-center justify-center bg-slate-900 text-white h-16
+    font-bold">Get Your Numerlogy</div>
+    <div class="p-5 grid grid-cols-1 gap-3 max-[640px]:w-full w-[600px] mx-auto">
+        <div class="">
+            <form action="/" method="POST" class="bg-slate-900 border-[1px] border-slate-400 p-5">
+                <div class="grid grid-cols-10 text-sm gap-y-5">
+                    <p class="bg-sky-700 text-white col-span-2 h-8 flex items-center
+                    justify-center font-bold">Name</p>
+                    <input type="text" class="h-8 col-span-8 px-2 bg-slate-700 text-white"
+                    placeholder="Firstname Middlename Surname" name="name">
+                    <p class="bg-sky-700 text-white col-span-2 h-8 flex items-center
+                    justify-center font-bold">DOB</p>
+                    <input type="date" class="h-8 col-span-8 px-2 bg-slate-700 text-white" name="dob">
+                    <p class="bg-sky-700 text-white col-span-2 h-8 flex items-center
+                    justify-center font-bold">Gender</p>
+                    <select type="dropdown" class="h-8 col-span-8 px-2 bg-slate-700 text-white" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <p class="col-span-10">
+                        <button type="submit" class="px-2 py-1 border-[1px] border-[rgb(45,180,100)]
+                        text-[rgb(45,180,100)] hover:bg-[rgb(45,180,100)] hover:text-white
+                        rounded">View Chart</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="text-white grid grid-cols-3 text-sm gap-2">
+            <div class="col-span-3 h-10 flex items-center justify-center bg-slate-900
+            border-[1px] border-slate-400">{{full_name}}</div>
+            <div class="col-span-2 h-10 flex items-center justify-center bg-slate-900
+            border-[1px] border-slate-400">{{birthdate}}</div>
+            <div class="col-span-1 h-10 flex items-center justify-center bg-slate-900
+            border-[1px] border-slate-400">{{gender}}</div>
+        </div>
+        <div>
+            <div class="grid grid-cols-2 gap-3 text-sm text-white">
+                <div class="grid grid-cols-1 border-[1px] border-slate-400">
+                    <p class="text-center px-2 py-1 bg-sky-800">Life No.</p>
+                    <p class="bg-slate-900 flex items-center justify-center h-8">{{life_number}}</p>
+                </div>
+                <div class="grid grid-cols-1 border-[1px] border-slate-400">
+                    <p class="text-center px-2 py-1 bg-sky-800">Destiny No.</p>
+                    <p class="bg-slate-900 flex items-center justify-center h-8">{{destiny_number}}</p>
+                </div>
+                <div class="grid grid-cols-1 border-[1px] border-slate-400">
+                    <p class="text-center px-2 py-1 bg-sky-800">Kua No.</p>
+                    <p class="bg-slate-900 flex items-center justify-center h-8">{{kua_number}}</p>
+                </div>
+                <div class="grid grid-cols-1 border-[1px] border-slate-400">
+                    <p class="text-center px-2 py-1 bg-sky-800">Maturity No.</p>
+                    <p class="bg-slate-900 flex items-center justify-center h-8">{{maturity_number}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="grid grid-cols-3 gap-1 text-sm text-white">
+                <p class="col-span-3 text-center px-2 py-1">Loshu Grid (Num | Occurs)</p>
+                {% for i in range(grid_numbers|length) %}
+                    <div class="grid grid-cols-2 border-[1px] border-slate-400 font-bold">
+                        <p class="h-12 bg-sky-800 flex items-center justify-center">{{grid_numbers[i]}}</p>
+                        <p class="h-12 bg-slate-900 flex items-center justify-center"
+                        name="grid{{i}}">{{num_occurs[i]}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
